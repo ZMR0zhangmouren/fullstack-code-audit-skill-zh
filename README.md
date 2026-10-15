@@ -148,7 +148,7 @@ dotnet 家族的平行扩展（路线 B：dotnet 家族零改动），node 侧�
 - EVID_NODE_CFG 分组落地（5 ID，追加于 SESS 分组后）：SECURITY_SWITCH / RUNTIME_SETTING / MIDDLEWARE_ORDER / SSR_MODE / ERR_HANDLER
 - 引用状态已 ACTIVE：node-audit-pipeline 子 skill 对照表 #12-18、fullstack-audit-pipeline 阶段 6、agent 矩阵均已升级为「P2 已交付」
 - 最终收尾（2026-08-23）：P2 全部交付经 final whole-branch review（rev-final-p2 ✅ / PASS-with-minors，6/6 检查项 PASS）；T2+T3 评审 2 Minor（taint-linker 消费方路径前缀、专项名表述）与 T4+T5 评审 10 Minor（证据引用双向一致等）全部修复关闭（commit 3924e47 / 6ac9416）；PARK 观察项复核 4 FIX 落地 + 6 项维持登记（commit b44b878）；全链 15 commits（072132a→3924e47），**dotnet 家族零改动**
-- **Skill 登记台账机制 + 能力缺口补齐（2026-09-14）**：新增 `docs/新增Skill登记.md` 治理台账（机制归并门槛 + 四处置 + 状态机）；按台账交付 5 个新专项（dotnet-query-injection / dotnet-spreadsheet-export / dotnet-ai-prompt / node-spreadsheet-export / node-ai-prompt）；既有扩展 5 项与负向处置 6 项登记待实现/观察。
+- **Skill 登记台账机制 + 能力缺口补齐（2026-09-14）**：新增 Skill 登记治理台账（机制归并门槛 + 四处置 + 状态机）；按台账交付 5 个新专项（dotnet-query-injection / dotnet-spreadsheet-export / dotnet-ai-prompt / node-spreadsheet-export / node-ai-prompt）；既有扩展 5 项与负向处置 6 项登记待实现/观察。
 - **既有 Skill 机制扩展落地（2026-09-14 扩展轮）**：按台账交付 5 项机制扩展（账号枚举 / 审计完整性+可用性 / 签名请求重放保护 / 配置暴露+响应信息披露 / 整数溢出），覆盖 11 个既有 skill（dotnet 6 文件 + node 5 文件）尾部追加「机制扩展」章节；EVID 字典新增 30 证据点（NODE_AUTH 新分组）；全部状态封顶「已实现，待验证」。
 - **设计意图采集机制（2026-09-16，方案 A）**：pipeline 双栈新增阶段 0.7（fail-open），从目标仓库 superpowers 产物（docs/superpowers、docs/design、.superpowers/sdd）提炼 `design_intent` 六节意图摘要；证据分层规则入 `AUDIT_EXECUTION_COMMON.md` §9（意图层参考禁止 EVID 引用，冲突以代码为准）；logic-audit / auth-audit 双栈首批接入（输入依赖 + 枚举规则各一条）；不新增 skill、不新增 EVID ID
 
@@ -720,7 +720,7 @@ route-mapper / route-tracer 的产物模板使用方式：
 - `skills/shared/IO_PATH_CONVENTION.md`
 - `skills/shared/DOTNET_ROUTE_OUTPUT_TEMPLATES.md`
 
-本轮对 .NET Skill 库做了九类结构化增强（详见 `docs/memory/CHANGELOG_AND_DECISIONS.md`）：
+本轮对 .NET Skill 库做了九类结构化增强：
 
 1. framework 专项全部升级为与漏洞专项一致的三层结构
 2. dotnet-route-tracer 升级为执行级链路追踪规范
@@ -961,7 +961,7 @@ dotnet-audit-pipeline 现在已明确：
 
 这次补强后，dotnet-audit-pipeline 不再只是一个"汇总说明"，而是整个 .NET Skill 库真正的协调入口。
 
-> 📋 第二轮增强内容（详细记录）已移至 `docs/memory/CHANGELOG_AND_DECISIONS.md`
+> 📋 第二轮增强内容的详细记录此处从略
 
 ## 2026年7月 CodeGraph 集成增强（第二十七轮之后）
 
@@ -1119,7 +1119,7 @@ dotnet-codegraph-indexer（必选前置步骤；不可用则记录原因并回�
 
 ## 第四十一轮 A 类快速修复（2026-09-18）
 
-依据 `docs/2026-09-18-真实审计验证回录与修复规划.md` 与同事真实 run 回录，对 6 项既有共享契约缺陷做快速修复（模板/脚本小改，非新机制）：
+依据真实审计验证回录与同事真实 run 反馈，对 6 项既有共享契约缺陷做快速修复（模板/脚本小改，非新机制）：
 
 1. **P0-1 路由计数自检**：route 输出模板新增 routes 计数对账节与检查点计数自检门禁，route-mapper 强制落账
 2. **P0-2 双字段计数口径统一**：IO 约定与双栈 route 模板强制 `unique` / `method_path_count` 双字段口径，contract-mapper 三桶分母锁定 `method_path_count`
@@ -1137,7 +1137,7 @@ dotnet-codegraph-indexer（必选前置步骤；不可用则记录原因并回�
 
 ## 第四十二轮 B 类机制扩展（2026-09-18）
 
-依据 `docs/superpowers/specs/2026-09-18-b-class-mechanism-extensions-design.md` 与「先登记、后实施」约定，B 类机制扩展批 7 条全部接入既有 Skill / pipeline，不新增目录（16 实施 commit + 3 复核补齐 + 收尾，台账 7 条翻转「已实现，待验证」）：
+按「先登记、后实施」约定，B 类机制扩展批 7 条全部接入既有 Skill / pipeline，不新增目录（16 实施 commit + 3 复核补齐 + 收尾，台账 7 条翻转「已实现，待验证」）：
 
 1. **P1-4 阶段 0.7 递归探测 + 否定结论复核**：design_intent 探测改递归 glob（`**/docs/superpowers/`、`**/.superpowers/sdd/`、`**/docs/design/`），子流水线对「未发现」否定结论执行廉价独立复核；产物新增 `search_scope` 自证块（§9 增补规则⑤⑥，肯定结论不需复核）
 2. **P2-12 意图源白名单扩展**：ADR/RFC 类决策目录纳入可配置意图源白名单，同六节摘要提炼，红线不变
@@ -1156,7 +1156,7 @@ dotnet-codegraph-indexer（必选前置步骤；不可用则记录原因并回�
 
 ## 第四十三轮 C 类 architectural 首项（2026-09-19 node-feature-api-mapper 功能↔API 映射层）
 
-依据 `docs/superpowers/specs/2026-09-19-node-feature-api-mapper-design.md` 与 2026-09-19 brainstorming 立项（三决策均取 A 方案），C 类 3 项 architectural 首项 P2-9 功能↔API 映射层完成 spec→plan→SDD 四批实施（skill 本体 → 消费接入 → pipeline 接入 → 收尾）：
+按 2026-09-19 brainstorming 立项（三决策均取 A 方案），C 类 3 项 architectural 首项 P2-9 功能↔API 映射层完成 spec→plan→SDD 四批实施（skill 本体 → 消费接入 → pipeline 接入 → 收尾）：
 
 1. **新建 `node-feature-api-mapper`**：功能面→端点→后端 route_id 三层映射（SPA 路由表扩展 / 组件树 import 反向索引 ≤6 层 / client 方法→端点复用 frontend_outbound rg 规则）；穿透白名单三模式穿透一层；断链三分类强制兜底（禁止静默丢弃，PARTIAL 循环补图）；产物 `feature_api_map_{timestamp}.md`（头部四强制字段 + 三节模板）；纯 BFF 无 SPA 项目 fail-open 落 `NOT_APPLICABLE` 探测证据
 2. **消费接入**：node-logic-audit「功能面组织判定」、node-auth-audit「功能视图优先（导出/删除/批量/租户/凭据类端点直接 P0）」、dotnet-route-tracer traces_index 增 `feature` 列（fullstack 反查 feature_api_map；单栈控制器域启发式，标注非证据）
@@ -1173,7 +1173,7 @@ dotnet-codegraph-indexer（必选前置步骤；不可用则记录原因并回�
 
 ## 第四十四轮 C 类 architectural 第二项（2026-09-19 DYNAMIC_VERIFY(STATIC_UNIT) 动态验证阶段，P2-10）
 
-依据 `docs/superpowers/specs/2026-09-19-dynamic-verify-unit-design.md`，C 类 3 项 architectural 第二项 P2-10 动态验证阶段完成 spec→plan→SDD 三批实施（schema+shared 模板 → 双 pipeline 阶段 7+语义衔接 → 收尾）：
+C 类 3 项 architectural 第二项 P2-10 动态验证阶段完成 spec→plan→SDD 三批实施（schema+shared 模板 → 双 pipeline 阶段 7+语义衔接 → 收尾）：
 
 1. **pending_pool schema 扩展**：「闭合方式」三枚举（`static-evidence` / `dynamic-unit` / `needs-env`）+ 条目状态枚举（`OPEN` / `DYNAMIC_VERIFIED`）+ 状态分桶计数（`open_count` / `dynamic_verified_count`，`pool_total` 口径不变）+ 历史产物启发式推断（`skills/shared/IO_PATH_CONVENTION.md`）
 2. **新建 `skills/shared/DYNAMIC_VERIFY_UNIT_TEMPLATE.md`**：红线四零自检（零凭证/零网络/零服务/零 scratch 目录外写入）+ dotnet xunit / node vitest 双测试工程骨架（复制不引用）+ 运行与回写协议
@@ -1207,7 +1207,7 @@ dotnet-codegraph-indexer（必选前置步骤；不可用则记录原因并回�
 
 ## 第四十五轮（2026-09-20 缺陷修复批，17 项缺陷归 3 批 SDD 交付）
 
-依据 `docs/superpowers/specs/2026-09-20-defect-fix-batch-design.md`，真实 run 回录 5 项失败 + 同事 12 项反馈合并 17 项缺陷，spec→plan→SDD 三批实施（批间两阶段复核 ×3 全通过 + 复核遗留 2 补句各独立 commit）：
+真实 run 回录 5 项失败 + 同事 12 项反馈合并 17 项缺陷，spec→plan→SDD 三批实施（批间两阶段复核 ×3 全通过 + 复核遗留 2 补句各独立 commit）：
 
 1. **批 1 计数与口径闭合**：pending_pool 一 id 一行禁别名合并 + 三公式固化（`pool_total`=唯一 pool_id 数 / 统计表计数=详情枚举数 / closed=非误报非 pending 之和）+ final_anchor 机器校验三行 + `run_timestamp` 全栈统一下发双栈 + SEVERITY 定级枚举闭合 C/H/M/L（禁区间值，升级通道注记「建议升 M」）
 2. **批 2 流程缺口修补**：stack_detect 子流水线强制交付 + 阶段 0 末 Test-Path 检查清单（缺即 BLOCKED）+ 共享索引单写者原则（分片命名归编排层合并）+ 「pool 行先于引用」强制条款 + 阶段 0 preflight 环境核查（`preflight_{timestamp}.md` 双栈）+ 等待超时量化公式（预计分钟=2+总文件数千分位×8）+ 阶段 6 P2 隐藏面 trace 编排层直执 + node-route-mapper 方法级配对强制（禁双方法保守上界）
@@ -1225,7 +1225,7 @@ dotnet-codegraph-indexer（必选前置步骤；不可用则记录原因并回�
 
 ## 第四十六轮（2026-09-21 复审修补批，打包前三路独立复审驱动）
 
-依据 `docs/superpowers/specs/2026-09-21-review-fix-batch-design.md`，打包前三路独立复审（设计合理性 / 落地真实性 / 一致性回归）暴露 20 项缺口（2 高 8 中 10 低），spec→SDD 两批实施（批间复核：快照-台账一致性自查 A8/B11 全对账 + no-op 核对通过）：
+打包前三路独立复审（设计合理性 / 落地真实性 / 一致性回归）暴露 20 项缺口（2 高 8 中 10 低），spec→SDD 两批实施（批间复核：快照-台账一致性自查 A8/B11 全对账 + no-op 核对通过）：
 
 1. **批 1 执行闭环断点修复**：维度清单包内快照（IO_PATH_CONVENTION 附录 A8+B9，执行真源 / 登记真源双轨）+ 子栈 run_timestamp 双模接住（fullstack 编排模式接收下发不自产 / 单栈模式自产，堵双时间戳复活口）+ BLOCKED 恢复闭环单栈断环修复（阶段 0 末清单补双模恢复动作）+ manifest 映射表格式登记 + 里程碑行时间戳钉死 run_timestamp + 公式③链状态口径登记（closed/open/误报/pending 四态映射表）+ final_anchor 三行机器校验字段 + preflight 产物模板
 2. **批 2 维度清单包内化 + 记录层打磨**：快照补登 B10/B11 + 完整性口径句 / unmapped 落点规范化（方法不确定入 frontend_outbound 自备清单节、禁写 unmapped_routes）/ 待补证池 CLOSED 枚举（静态/阶段内闭合）+ closed_count 分桶归并 / frontend_outbound IO 路径真源登记（route_mapping 产物表增行）/ 方案A纪律排除句（rg 零命中非资产存在性结论，4 agents 各加一行）/ 等待超时取整规则（不取整连续计算、四舍五入到分钟）+ 总文件数 GC6 口径 / preflight 级联规则登记 / SEVERITY 定级统计分组按枚举值 / 链状态态名对照（pending↔open 同义同集）/ node pipeline 单栈维度核对引用句 / 维护日志 + CHANGELOG 记录层勘误（缺陷项数 16 口径）
