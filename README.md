@@ -9,6 +9,8 @@
 
 项目覆盖 ASP.NET Core、ASP.NET MVC、ASP.NET Web API、Blazor、SignalR、GraphQL、WCF 以及常见类库场景；Node.js 侧覆盖 Express、Koa、Fastify、Next.js、Nuxt、NestJS、GraphQL，支持前后端全栈（stack_mode=BOTH）审计。适用于合法授权前提下的源码审计、修复验证与回归分析。
 
+> 🔁 **项目沿革**：本仓库是 [dotnet-security-audit-skill](https://github.com/ZMR0zhangmouren/dotnet-security-audit-skill) 经过多次迭代优化的版本。旧版仅覆盖 .NET 单栈，且证据追踪、覆盖门禁、证据质检等环节不完整；本版补齐了 Node.js 侧与前后端全栈审计能力，并完整落地了证据契约、覆盖门禁与质检流程。旧仓库仅作存档，新项目请使用本仓库。
+
 > 📖 **首次部署与使用请阅读：[docs/初始化与使用指南.md](docs/初始化与使用指南.md)**（部署步骤、三种覆盖模式、断点续跑、门禁验收、回归测试方案）
 
 ## 项目特点
